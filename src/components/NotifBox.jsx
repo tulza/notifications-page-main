@@ -11,12 +11,13 @@ import {
   favicon32x32,
   imageChess,
 } from "./ImageAsset.jsx";
+import PrivateMessageBox from "./PrivateMessageBox.jsx";
 
 const NotifBox = () => {
   return (
     <div className="w-[1100px]">
       {/*  */}
-      <div className="bg-white p-12 rounded-[32px]">
+      <div className="bg-white p-12 pb-4 rounded-[32px]">
         <div className="py-4 flex justify-between items-end">
           <div className="flex items-center">
             {/* notification */}
@@ -54,6 +55,7 @@ const NotifBox = () => {
           date="5 days ago"
           isRead={true}
         />
+        <PrivateMessageBox />
         <MessageBox
           imageURL={avatarKimberlySmith}
           username="Kimberly Smith"
