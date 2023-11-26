@@ -1,5 +1,7 @@
 import React from "react";
 import MessageBox from "./messageBox";
+import PrivateMessageBox from "./PrivateMessageBox.jsx";
+import NotifBoxHeader from "./NotifBoxHeader.jsx";
 import {
   avatarAngelaGray,
   avatarAnnaKim,
@@ -11,71 +13,57 @@ import {
   favicon32x32,
   imageChess,
 } from "./ImageAsset.jsx";
-import PrivateMessageBox from "./PrivateMessageBox.jsx";
 
 const NotifBox = () => {
   return (
     <div className="w-[1100px]">
       {/*  */}
       <div className="bg-white p-12 pb-4 rounded-[32px]">
-        <div className="py-4 flex justify-between items-end">
-          <div className="flex items-center">
-            {/* notification */}
-            <span className="text-[32px] font-bold">Notification</span>
-            <div className="bg-blue-950 text-white ml-2 px-3 rounded-[6px] font-bold">
-              3
-            </div>
-          </div>
-          <a className="text-[20px]" href="#">
-            mark all as read
-          </a>
-        </div>
+        <NotifBoxHeader />
         <MessageBox
           imageURL={avatarMarkWebber}
           username="Mark Webber"
-          messageType="reacted to your recent post My first tournament today!"
+          type="REACT"
           date="1m ago"
         />
         <MessageBox
           imageURL={avatarAngelaGray}
           username="Angela Gray"
-          messageType="followed you"
+          type="FOLLOW_YOU"
           date="5m ago"
         />
         <MessageBox
           imageURL={avatarJacobThompson}
           username="Jacob Thompson"
-          messageType="has joined your group Chess Club"
+          type="JOIN_GROUP"
           date="1 day ago"
+          group="Chess Club"
         />
         <MessageBox
           imageURL={avatarRizkyHasanuddin}
           username=" Rizky Hasanuddin"
-          messageType="sent you a private message"
+          type="PRIVATE_MSG"
           date="5 days ago"
-          isRead={true}
+          message="Chess Club"
         />
-        <PrivateMessageBox />
         <MessageBox
           imageURL={avatarKimberlySmith}
           username="Kimberly Smith"
-          messageType="commented on your picture"
+          type="COMMENT"
           date="1 week ago"
-          isRead={true}
         />
         <MessageBox
           imageURL={avatarNathanPeterson}
           username="Nathan Peterson"
-          messageType="reacted to your recent post 5 end-game strategies to increase your win rate"
+          type="REACT"
           date="2 weeks ago"
-          isRead={true}
         />
         <MessageBox
           imageURL={avatarAnnaKim}
           username="Anna Kim"
-          messageType="left the group Chess Club"
+          type="LEFT_GROUP"
           date="2 weeks ago"
-          isRead={true}
+          group="Chess Club"
         />
       </div>
     </div>
