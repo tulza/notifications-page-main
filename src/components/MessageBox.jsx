@@ -38,20 +38,32 @@ const eMessageBox = ({
   );
 };
 
-export const MessageBox = ({
-  imageURL,
-  username,
-  date,
-  type,
-  isRead,
-  props,
-}) => {
+export const MessageBox = props => {
+  const imageURL = props.imageURL;
+  const username = props.username;
+  const date = props.date;
+  const type = props.type;
+  const isRead = props.isRead ? true : false;
+
   const [read, setRead] = useState(isRead);
-  const [foreMessage, setForeMsg] = useState("");
-  const [content, setContent] = useState("");
-  const handleMarkRead = () => {
-    setRead(true);
-  };
+  const content = {this.props.group};
+  const foreMessage = (() => {
+    if (type == "FOLLOW_YOU") {
+      return "followed you";
+    } else if (type == "JOIN_GROUP") {
+      return "has joined your group";
+      //
+    } else if (type == "PRIVATE_MSG") {
+      return "sent you a private message";
+    } else if (type == "COMMENT") {
+      return "commented on your picture";
+    } else if (type == "REACT") {
+      return "reacted to your recent post";
+    } else if (type == "LEFT_GROUP") {
+      return "left the group";
+    }
+  })();
+
   {
     /* The absolute worst solution for unread */
   }
@@ -60,29 +72,7 @@ export const MessageBox = ({
       return <div className="inline-block bg-red-400 w-2 h-2 rounded-full" />;
     }
   };
-  if (type == "FOLLOW_YOU") {
-    setForeMsg("followed you");
-  } 
-  else if (type == "JOIN_GROUP") {
-    setForeMsg("has joined your group");
-    setContent(this.props.group);
-  } 
-  else if (type == "PRIVATE_MSG") {
-    setForeMsg("sent you a private message");
-    setContent(this.props.message);
-  } 
-  else if (type == "COMMENT") {
-    setForeMsg("commented on your picture");
-    setContent(this.props.comment);
-  } 
-  else if (type == "REACT") {
-    setForeMsg("reacted to your recent post");
-    setContent(this.props.react);
-  } 
-  else if (type == "LEFT_GROUP") {
-    setForeMsg("left the group");
-    setContent(this.props.group);
-  }
+
   return (
     <div
       className={clsx(

@@ -26,7 +26,7 @@ const NotifBox = () => {
           type="REACT"
           date="1m ago"
         />
-        <MessageBox
+        {/* <MessageBox
           imageURL={avatarAngelaGray}
           username="Angela Gray"
           type="FOLLOW_YOU"
@@ -64,7 +64,7 @@ const NotifBox = () => {
           type="LEFT_GROUP"
           date="2 weeks ago"
           group="Chess Club"
-        />
+        /> */}
       </div>
     </div>
   );
