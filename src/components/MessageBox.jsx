@@ -38,7 +38,7 @@ const eMessageBox = ({
   );
 };
 
-export const MessageBox = props => {
+export const MessageBox = (props) => {
   const imageURL = props.imageURL;
   const username = props.username;
   const date = props.date;
@@ -46,23 +46,32 @@ export const MessageBox = props => {
   const isRead = props.isRead ? true : false;
 
   const [read, setRead] = useState(isRead);
-  const content = {this.props.group};
-  const foreMessage = (() => {
+  let content = props.content;
+  const foreMessage = ((type) => {
     if (type == "FOLLOW_YOU") {
       return "followed you";
-    } else if (type == "JOIN_GROUP") {
-      return "has joined your group";
-      //
-    } else if (type == "PRIVATE_MSG") {
+    } //
+    else if (type == "PRIVATE_MSG") {
+      content = <span className="font-bold">{content}</span>;
       return "sent you a private message";
-    } else if (type == "COMMENT") {
-      return "commented on your picture";
-    } else if (type == "REACT") {
-      return "reacted to your recent post";
-    } else if (type == "LEFT_GROUP") {
+    } //
+    else if (type == "JOIN_GROUP") {
+      content = <span className="font-bold">{content}</span>;
+      return "has joined your group";
+    } //
+    else if (type == "LEFT_GROUP") {
+      content = <span className="font-bold">{content}</span>;
       return "left the group";
-    }
-  })();
+    } //
+    else if (type == "COMMENT") {
+      content = <span className="font-bold">{content}</span>;
+      return "commented on your picture";
+    } //
+    else if (type == "REACT") {
+      content = <span className="font-bold">{content}</span>;
+      return "reacted to your recent post";
+    } //
+  })(type);
 
   {
     /* The absolute worst solution for unread */
@@ -84,9 +93,7 @@ export const MessageBox = props => {
       <div className="">
         <p className="break-all hyphens-auto">
           <strong>{username} </strong>
-          {foreMessage}
-          {readMarker()}
-          {content}
+          {foreMessage} {content} {readMarker()}
         </p>
         <p className="self-start">{date}</p>
       </div>

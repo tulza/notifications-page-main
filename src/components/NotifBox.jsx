@@ -25,8 +25,9 @@ const NotifBox = () => {
           username="Mark Webber"
           type="REACT"
           date="1m ago"
+          content="My first tournament today"
         />
-        {/* <MessageBox
+        <MessageBox
           imageURL={avatarAngelaGray}
           username="Angela Gray"
           type="FOLLOW_YOU"
@@ -38,13 +39,14 @@ const NotifBox = () => {
           type="JOIN_GROUP"
           date="1 day ago"
           group="Chess Club"
+          content="Chess Club"
         />
         <MessageBox
           imageURL={avatarRizkyHasanuddin}
           username=" Rizky Hasanuddin"
           type="PRIVATE_MSG"
           date="5 days ago"
-          message="Chess Club"
+          content="Chess Club"
         />
         <MessageBox
           imageURL={avatarKimberlySmith}
@@ -57,14 +59,15 @@ const NotifBox = () => {
           username="Nathan Peterson"
           type="REACT"
           date="2 weeks ago"
+          content="5 end-game strategies to increase your win rate"
         />
         <MessageBox
           imageURL={avatarAnnaKim}
           username="Anna Kim"
           type="LEFT_GROUP"
           date="2 weeks ago"
-          group="Chess Club"
-        /> */}
+          content="Chess Club"
+        />
       </div>
     </div>
   );
