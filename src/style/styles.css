@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Capitalise */
+@layer components {
+  .Username {
+    @apply font-extrabold  hover:text-[hsl(219,_85%,_26%)] cursor-pointer;
+  }
+
+  .ForeMessage {
+    @apply text-[hsl(219,_12%,_42%)];
+  }
+  .MessageLink {
+    @apply font-extrabold text-[hsl(219,_12%,_42%)] hover:text-[hsl(219,_85%,_26%)] cursor-pointer;
+  }
+  .Group {
+    @apply font-extrabold text-[hsl(219,_85%,_26%)] cursor-pointer;
+  }
+  .DateLabel {
+    @apply text-[hsl(219,_14%,_63%)];
+  }
+}
+
 @font-face {
   font-family: "Plus Jakarta Sans";
   src: url("/src/PlusJakartaSans-VariableFont_wght.ttf");

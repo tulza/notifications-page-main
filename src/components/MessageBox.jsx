@@ -1,76 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import clsx from "clsx";
 
-const eMessageBox = ({
+export const MessageBox = ({
   imageURL,
   username,
-  messageType,
   date,
-  isRead = false,
+  type,
+  countNoti,
+  ...props
 }) => {
-  const [read, setRead] = useState(isRead);
-  const testmsg =
-    "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-  return (
-    <div
-      className={clsx(
-        "grid grid-cols-[100px_auto] m-2 rounded-[0.5rem] p-[1rem]",
-        read ? "bg-white" : "bg-blue-50"
-      )}
-    >
-      <img src={imageURL} className="w-[70px]" />
-      <div className="">
-        <p className="break-all hyphens-auto">
-          <strong>{username} </strong>
-          {messageType} {/* The absolute worst solution for unread */}
-          {(() => {
-            if (!read) {
-              return (
-                <div className="inline-block bg-red-400 w-2 h-2 rounded-full" />
-              );
-            }
-          })()}
-        </p>
-        <p className="self-start">{date}</p>
-      </div>
-    </div>
-  );
-};
-
-export const MessageBox = (props) => {
-  const imageURL = props.imageURL;
-  const username = props.username;
-  const date = props.date;
-  const type = props.type;
   const isRead = props.isRead ? true : false;
-
   const [read, setRead] = useState(isRead);
   let content = props.content;
+
+  useEffect(() => {
+    setRead(isRead);
+  }, [isRead]);
   const foreMessage = ((type) => {
     if (type == "FOLLOW_YOU") {
       return "followed you";
     } //
     else if (type == "PRIVATE_MSG") {
-      content = <span className="font-bold">{content}</span>;
+      content = <span className="MessageLink">{content}</span>;
       return "sent you a private message";
     } //
     else if (type == "JOIN_GROUP") {
-      content = <span className="font-bold">{content}</span>;
+      content = <a className="Group">{content}</a>;
       return "has joined your group";
     } //
     else if (type == "LEFT_GROUP") {
-      content = <span className="font-bold">{content}</span>;
+      content = <a className="Group">{content}</a>;
       return "left the group";
     } //
     else if (type == "COMMENT") {
-      content = <span className="font-bold">{content}</span>;
+      content = <span className="MessageLink">{content}</span>;
       return "commented on your picture";
     } //
     else if (type == "REACT") {
-      content = <span className="font-bold">{content}</span>;
+      content = <span className="MessageLink">{content}</span>;
       return "reacted to your recent post";
     } //
+    return;
   })(type);
 
   {
@@ -78,24 +49,27 @@ export const MessageBox = (props) => {
   }
   const readMarker = () => {
     if (!read) {
-      return <div className="inline-block bg-red-400 w-2 h-2 rounded-full" />;
+      return (
+        <span className="inline-block bg-red-400 w-2.5 h-2.5  rounded-full mb-0.5" />
+      );
     }
   };
 
   return (
     <div
       className={clsx(
-        "grid grid-cols-[100px_auto] m-2 rounded-[0.5rem] p-[1rem]",
+        "grid grid-cols-[100px_auto] m-2 rounded-[0.5rem] p-[1rem] transition-colors duration-500",
         read ? "bg-white" : "bg-blue-50"
       )}
     >
       <img src={imageURL} className="w-[70px]" />
-      <div className="">
-        <p className="break-all hyphens-auto">
-          <strong>{username} </strong>
-          {foreMessage} {content} {readMarker()}
+      <div className="text-[1.25rem]">
+        <p>
+          <a className="Username">{username} </a>
+          <span className="ForeMessage">{foreMessage} </span>
+          {content} {readMarker()}
         </p>
-        <p className="self-start">{date}</p>
+        <p className="DateLabel">{date}</p>
       </div>
     </div>
   );
